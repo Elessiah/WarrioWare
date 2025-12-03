@@ -19,6 +19,7 @@
 // cubitus
 // cuticule
 // saperlipopète
+// diatribe
 // TODO à continuer
 
 // Récupération du canvas et du contexte
@@ -60,11 +61,34 @@ function drawBall() {
 
 // Fonction pour dessiner le buuuuuuuuuut
 function drawGoal() {
+    // Dessiner le but (les poteaux)
     ctx.fillStyle = goal.color;
     ctx.fillRect(goal.x, goal.y, goal.width, goal.height);
     ctx.strokeStyle = "black";
     ctx.strokeRect(goal.x, goal.y, goal.width, goal.height);
+
+    // Dessiner le filet (lignes diagonales)
+    ctx.strokeStyle = "rgba(0,0,0,0.7)";
+    ctx.lineWidth = 1;
+
+    // Espacement entre les lignes du filet
+    const spacing = 8;
+    const lines = Math.floor(goal.height / spacing);
+
+    for (let i = 0; i < lines; i++) {
+        const y = goal.y + i * spacing;
+        ctx.beginPath();
+        ctx.moveTo(goal.x, y);
+        ctx.lineTo(goal.x + goal.width, y + goal.width / 2);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(goal.x + goal.width, y);
+        ctx.lineTo(goal.x, y + goal.width / 2);
+        ctx.stroke();
+    }
 }
+
 
 // commentaire générée automatiquement par ChatGPT
 function drawPowerLine() {
