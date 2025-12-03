@@ -11,13 +11,13 @@ body {
 } 
 
 body.home {
-    background-image: url('../images/background.jpg');
+    background-image: url('/images/background.jpg');
     background-size: cover;
     background-position: center;
 }
 
 body.gameover {
-    background-image: url('../images/backgroundGameOver.jpg');
+    background-image: url('/images/backgroundGameOver.jpg');
     background-size: cover;
     background-position: center;
 }
