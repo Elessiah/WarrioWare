@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Jeu de Relier les Fils</title>
+<style>
+    body {
+        font-family: Arial;
+        margin: 0;
+        overflow: hidden;
+        height: 100vh;
+        width: 100vw;
+        background: #f6f6f6;
+    }
+
+    #timer {
+        font-size: 3rem;
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        color: red;
+        z-index: 1000;
+    }
+
+    /* Fils */
+    .item {
+        position: fixed;
+        left: 20px;
+        width: 150px;
+        padding: 10px;
+        border: 2px solid black;
+        border-radius: 8px;
+        background: white;
+        cursor: grab;
+        font-size: 1.2rem;
+    }
+
+    /* Prises */
+    .target {
+        position: fixed;
+        width: 150px;
+        height: 50px;
+        border: 2px dashed black;
+        border-radius: 8px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #e9e9e9;
+        font-size: 1.2rem;
+    }
+</style>
+</head>
+<body>
+
+<div id="timer">5</div>
+
+<div class="item" draggable="true" id="rouge" style="top:100px;">🔴 Fil Rouge</div>
+<div class="item" draggable="true" id="jaune" style="top:200px;">🟡 Fil Jaune</div>
+<div class="item" draggable="true" id="bleu" style="top:300px;">🔵 Fil Bleu</div>
+
+<div class="target" data-color="rouge">Prise Rouge</div>
+<div class="target" data-color="jaune">Prise Jaune</div>
+<div class="target" data-color="bleu">Prise Bleu</div>
+
+<script>
+
+function placeTargetsRandomly() {
+    const targets = document.querySelectorAll(".target");
+    const screenW = window.innerWidth - 170;
+    const screenH = window.innerHeight - 70;
+
+    targets.forEach(t => {
+        const x = Math.random() * screenW;
+        const y = Math.random() * screenH;
+
+        t.style.left = x + "px";
+        t.style.top = y + "px";
+    });
+}
+
+placeTargetsRandomly();
+
+let time = 5;
+const timerDiv = document.getElementById("timer");
+
+const countdown = setInterval(() => {
+    time--;
+    timerDiv.textContent = time;
+
+    if (time <= 0) {
+        clearInterval(countdown);
+        window.location.href = "page_fail.html";
+    }
+}, 1000);
+
+let dragged = null;
+
+document.querySelectorAll(".item").forEach(elem => {
+    elem.addEventListener("dragstart", e => {
+        dragged = e.target;
+    });
+});
+
+document.querySelectorAll(".target").forEach(target => {
+    target.addEventListener("dragover", e => e.preventDefault());
+
+    target.addEventListener("drop", e => {
+        if (!dragged) return;
+
+        if (dragged.id === target.dataset.color) {
+            target.style.background = "#b6fcb6";
+            target.textContent = "✔ Correct";
+            dragged.style.opacity = "0.5";
+            dragged.draggable = false;
+            checkWin();
+        } else {
+            target.style.background = "#fcb6b6";
+            target.textContent = "❌ Faux";
+            clearInterval(countdown);
+            window.location.href = "page_fail.html";
+        }
+    });
+});
+
+function checkWin() {
+    const allCorrect = [...document.querySelectorAll(".target")]
+        .every(t => t.textContent === "✔ Correct");
+
+    if (allCorrect) {
+        clearInterval(countdown);
+        window.location.href = "page_success.html";
+    }
+}
+</script>
+
+</body>
+</html>
