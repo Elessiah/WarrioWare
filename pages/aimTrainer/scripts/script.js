@@ -12,14 +12,15 @@ function placeButton() {
   const btnWidth = btn.offsetWidth;
   const btnHeight = btn.offsetHeight;
 
-  const x = Math.random() * (width - btnWidth);
-  const y = Math.random() * (height - btnHeight);
+  const margin = 10;
+  const x = Math.random() * (width - btnWidth - 2 * margin) + margin;
+  const y = Math.random() * (height - btnHeight - 2 * margin) + margin;
 
   btn.style.left = x + "px";
   btn.style.top = y + "px";
 
   clearTimeout(timer);
-  timer = setTimeout(placeButton, 900); // bouton se déplace toutes les 0.5s
+  timer = setTimeout(placeButton, 600); // bouton se déplace toutes les 0.5s
 }
 
 function clickEffect() {
@@ -32,8 +33,10 @@ function clickEffect() {
   }, 200);
 }
 
-// Quand le bouton est cliqué
 btn.addEventListener("click", () => {
+  // Désactiver le bouton pour empêcher les clics multiples
+  btn.disabled = true;
+
   clickEffect();
 
   // Augmenter le score
@@ -44,7 +47,10 @@ btn.addEventListener("click", () => {
   clearTimeout(timer);
   clearTimeout(freezeTimeout);
 
-  freezeTimeout = setTimeout(placeButton, 200);
+  freezeTimeout = setTimeout(() => {
+    placeButton(); // Repositionne le bouton
+    btn.disabled = false; // Réactive le bouton
+  }, 200);
 });
 
 // Lancer le bouton pour la première fois
