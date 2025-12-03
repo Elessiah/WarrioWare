@@ -28,16 +28,6 @@ function startCarrousel() {
   }, vitesseCarrousel);
 }
 
-function startTimer() {
-  intervalTimer = setInterval(() => {
-    const maintenant = performance.now();
-    const restant = Math.max(0, dureeJeu - (maintenant - debut));
-    timerElt.textContent = "Temps : " + (restant / 1000).toFixed(1) + "s";
-
-    if (restant <= 0) fin(false);
-  }, 50);
-}
-
 function fin(gagne) {
   if (fini) return;
   fini = true;
