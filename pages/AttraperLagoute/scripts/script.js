@@ -1,3 +1,40 @@
+// "Attrape ! Attrape !"
+// Le joueur se prépare, le seau est positionné, la goutte va tomber…
+// Le public est en délire, les fans crient déjà !
+
+// Déplacement du nuage
+// Commentateur : Et le nuage commence sa traversée… il avance doucement, suspense total !
+
+// Début de la chute de la goutte
+// "Attention, ça tombe !"
+// Le joueur ajuste son seau, concentration maximale !
+// "Ouh là là, la goutte descend vite…"
+// "Regardez ce timing, incroyable !"
+// "Si le joueur rate, c’est un fiasco complet…"
+
+// Gestion des flèches du joueur
+// "Il se déplace vers la gauche…"
+// "Il se déplace vers la droite…"
+// "Il anticipe parfaitement la trajectoire !"
+
+// Collision goutte/seau
+// Commentateur : Suspense insoutenable !
+// "Est-ce qu’il va l’attraper ?"
+// "Oui ! Succès immédiat ! Fantastique !"
+// "Le public hurle de joie !"
+
+// Échec (goutte touche le sol)
+// "Oh non… trop lent !"
+// "La goutte est perdue… échec total…"
+// "Le commentateur est sous le choc…"
+// "Les fans sont déçus mais encouragent quand même !"
+
+// Fin du jeu
+// "Et voilà, le mini-jeu se termine…"
+// "Que d’émotions ! Quelle performance !"
+// "Le commentateur applaudit le joueur !"
+// "À la prochaine partie pour de nouvelles aventures !"
+
 const cloud = document.getElementById("cloud");
 const drop = document.getElementById("drop");
 const bucket = document.getElementById("bucket");
@@ -31,6 +68,7 @@ function moveCloud() {
 moveCloud();
 
 // Déplacement du seau avec les flèches
+// C'est ici on va voir ce que le joueur est capable de faire 
 document.addEventListener("keydown", (e) => {
     let bucketLeft = bucket.offsetLeft;
     if (e.key === "ArrowLeft") {
