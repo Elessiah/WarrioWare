@@ -3,7 +3,7 @@
 // Le public est en délire, les fans crient déjà !
 
 // Déplacement du nuage
-// Commentateur : Et le nuage commence sa traversée… il avance doucement, suspense total !
+//  Et le nuage commence sa traversée… il avance doucement, suspense total !
 
 // Début de la chute de la goutte
 // "Attention, ça tombe !"
@@ -18,7 +18,7 @@
 // "Il anticipe parfaitement la trajectoire !"
 
 // Collision goutte/seau
-// Commentateur : Suspense insoutenable !
+// Suspense insoutenable !
 // "Est-ce qu’il va l’attraper ?"
 // "Oui ! Succès immédiat ! Fantastique !"
 // "Le public hurle de joie !"
@@ -26,13 +26,11 @@
 // Échec (goutte touche le sol)
 // "Oh non… trop lent !"
 // "La goutte est perdue… échec total…"
-// "Le commentateur est sous le choc…"
 // "Les fans sont déçus mais encouragent quand même !"
 
 // Fin du jeu
 // "Et voilà, le mini-jeu se termine…"
 // "Que d’émotions ! Quelle performance !"
-// "Le commentateur applaudit le joueur !"
 // "À la prochaine partie pour de nouvelles aventures !"
 
 const cloud = document.getElementById("cloud");
