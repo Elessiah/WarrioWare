@@ -14,11 +14,13 @@ const timerElt = document.querySelector(".timer");
 const couleurCible = couleurs[Math.floor(Math.random() * couleurs.length)];
 cible.style.background = couleurCible;
 
+// Variables de jeu
 let index = 0;
 let debut = performance.now();
 let fini = false;
 let intervalCarrousel, intervalTimer;
 
+// Fonctions
 function startCarrousel() {
   intervalCarrousel = setInterval(() => {
     index = (index + 1) % couleurs.length;
@@ -61,3 +63,4 @@ document.addEventListener("keydown", (e) => {
 carrousel.style.background = couleurs[0];
 startCarrousel();
 startTimer();
+
