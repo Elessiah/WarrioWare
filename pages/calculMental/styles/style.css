@@ -1,0 +1,62 @@
+/* Réinitialisation légère */
+body, p, label, input {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Centrage de la page */
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #3b82f6, #9333ea);
+    color: white;
+}
+
+/* Affichage de l'opération */
+#calcul {
+    font-size: 3.2rem;
+    font-weight: bold;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 20px 40px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+/* Zone réponse */
+label {
+    font-size: 1.3rem;
+    margin-bottom: 8px;
+}
+
+#answer {
+    width: 120px;
+    font-size: 1.6rem;
+    text-align: center;
+    padding: 8px;
+    margin-top: 5px;
+    border-radius: 6px;
+    border: none;
+    outline: none;
+    background: #ffffffcc;
+}
+
+/* Résultat */
+#isValidAnswer {
+    margin-top: 20px;
+    font-size: 1.8rem;
+    font-weight: bold;
+    transition: 0.3s ease-in-out;
+}
+
+/* Bonus animations : réussite / erreur */
+#isValidAnswer.correct {
+    color: #4ade80; /* Vert */
+}
+
+#isValidAnswer.error {
+    color: #ef4444; /* Rouge */
+}
