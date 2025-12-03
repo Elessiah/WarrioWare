@@ -20,14 +20,17 @@
 // cuticule
 // saperlipopète
 // diatribe
+// transistor
+// médiator
+// Mulhouse
 // TODO à continuer
 
-// Récupération du canvas et du contexte
+// Init du terrain de basketball
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 
-// Variables du jeu
-let ball = {
+// Variables du jeu de paume
+let balleDePingPong = {
     x: 100,
     y: 250,
     radius: 15,
@@ -53,25 +56,24 @@ let mouseY = 0;
 // Fonction pour desssiner un ballon de type footballistique
 function drawBall() {
     ctx.beginPath();
-    ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
-    ctx.fillStyle = ball.color;
+    ctx.arc(balleDePingPong.x, balleDePingPong.y, balleDePingPong.radius, 0, Math.PI * 2);
+    ctx.fillStyle = balleDePingPong.color;
     ctx.fill();
     ctx.closePath();
 }
 
 // Fonction pour dessiner le buuuuuuuuuut
 function drawGoal() {
-    // Dessiner le but (les poteaux)
+    // potos
     ctx.fillStyle = goal.color;
     ctx.fillRect(goal.x, goal.y, goal.width, goal.height);
     ctx.strokeStyle = "black";
     ctx.strokeRect(goal.x, goal.y, goal.width, goal.height);
 
-    // Dessiner le filet (lignes diagonales)
+    // filet o fish
     ctx.strokeStyle = "rgba(0,0,0,0.7)";
     ctx.lineWidth = 1;
 
-    // Espacement entre les lignes du filet
     const spacing = 8;
     const lines = Math.floor(goal.height / spacing);
 
@@ -90,11 +92,11 @@ function drawGoal() {
 }
 
 
-// commentaire générée automatiquement par ChatGPT
+// commentaire générée automatiquement par ChatGPT (à enlever avant la MR)
 function drawPowerLine() {
-    if (ball.isDragging) {
+    if (balleDePingPong.isDragging) {
         ctx.beginPath();
-        ctx.moveTo(ball.x, ball.y);
+        ctx.moveTo(balleDePingPong.x, balleDePingPong.y);
         ctx.lineTo(mouseX, mouseY);
         ctx.strokeStyle = "rgba(255, 0, 0, 0.5)";
         ctx.lineWidth = 3;
@@ -102,7 +104,7 @@ function drawPowerLine() {
     }
 }
 
-function update() {
+function okayyyLetsGo() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawGoal();
     drawBall();
@@ -111,26 +113,26 @@ function update() {
 
 // bon t'as compris le principe tu sais lire frérot
 function shootBall() {
-    if (ball.isDragging) {
-        const dx = ball.x - mouseX;
-        const dy = ball.y - mouseY;
+    if (balleDePingPong.isDragging) {
+        const dx = balleDePingPong.x - mouseX;
+        const dy = balleDePingPong.y - mouseY;
         const distance = Math.sqrt(dx * dx + dy * dy);
-        const power = Math.min(distance / 10, ball.maxPower);
+        const power = Math.min(distance / 10, balleDePingPong.maxPower);
 
         const vx = (dx / distance) * power * -1;
         const vy = (dy / distance) * power * -1;
 
         // Animation du tir
         const animation = setInterval(() => {
-            ball.x += vx;
-            ball.y += vy;
+            balleDePingPong.x += vx;
+            balleDePingPong.y += vy;
 
             // Vérification si le ballon est dans le but
             if (
-                ball.x + ball.radius > goal.x &&
-                ball.x - ball.radius < goal.x + goal.width &&
-                ball.y + ball.radius > goal.y &&
-                ball.y - ball.radius < goal.y + goal.height
+                balleDePingPong.x + balleDePingPong.radius > goal.x &&
+                balleDePingPong.x - balleDePingPong.radius < goal.x + goal.width &&
+                balleDePingPong.y + balleDePingPong.radius > goal.y &&
+                balleDePingPong.y - balleDePingPong.radius < goal.y + goal.height
             ) {
                 alert("Champion cousin !");
                 clearInterval(animation);
@@ -139,58 +141,59 @@ function shootBall() {
 
             // Vérification si le ballon sort du canvas
             if (
-                ball.x < 0 ||
-                ball.x > canvas.width ||
-                ball.y < 0 ||
-                ball.y > canvas.height
+                balleDePingPong.x < 0 ||
+                balleDePingPong.x > canvas.width ||
+                balleDePingPong.y < 0 ||
+                balleDePingPong.y > canvas.height
             ) {
                 alert("C'est une passe pour Thomas Pesquier ou quoi ?");
                 clearInterval(animation);
                 iRecupTheBall();
             }
 
-            update();
+            okayyyLetsGo();
         }, 16);
     }
 }
 
-// I recup the ball (personne aura la rèf)
+// I recup the balleDePingPong (personne aura la rèf)
 function iRecupTheBall() {
-    ball.x = 100;
-    ball.y = 250;
-    ball.isDragging = false;
+    balleDePingPong.x = 100;
+    balleDePingPong.y = 250;
+    balleDePingPong.isDragging = false;
 }
 
-// Événements de la souris
+// une souris vert, qui courrait dans l'herbe
+// je l'attrape par la queue, je la montre à ces messieurs
 canvas.addEventListener("mousedown", (e) => {
     const rect = canvas.getBoundingClientRect();
     mouseX = e.clientX - rect.left;
     mouseY = e.clientY - rect.top;
 
     const distance = Math.sqrt(
-        Math.pow(mouseX - ball.x, 2) + Math.pow(mouseY - ball.y, 2)
+        Math.pow(mouseX - balleDePingPong.x, 2) + Math.pow(mouseY - balleDePingPong.y, 2)
     );
 
-    if (distance <= ball.radius) {
-        ball.isDragging = true;
+    if (distance <= balleDePingPong.radius) {
+        balleDePingPong.isDragging = true;
     }
 });
 
 canvas.addEventListener("mousemove", (e) => {
-    if (ball.isDragging) {
+    if (balleDePingPong.isDragging) {
         const rect = canvas.getBoundingClientRect();
         mouseX = e.clientX - rect.left;
         mouseY = e.clientY - rect.top;
-        update();
+        okayyyLetsGo();
     }
 });
 
 canvas.addEventListener("mouseup", () => {
-    if (ball.isDragging) {
+    if (balleDePingPong.isDragging) {
         shootBall();
-        ball.isDragging = false;
+        balleDePingPong.isDragging = false;
     }
 });
 
 // Okayyyyy let's go !
-update();
+okayyyLetsGo();
