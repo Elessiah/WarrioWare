@@ -12,6 +12,13 @@
 // vestibule
 // auriculaire
 // tambouriner
+// ornytorinque
+// callypige
+// usurpation
+// foutriquet
+// cubitus
+// cuticule
+// saperlipopète
 // TODO à continuer
 
 // Récupération du canvas et du contexte
