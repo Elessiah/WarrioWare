@@ -1,36 +1,9 @@
-// Liste de mots improbables :
-// carquois
-// hallebarde
-// taupinembours
-// cucurbitacée
-// bassinet
-// estoc
-// monolythe
-// esperanto
-// antipode
-// pupitre
-// vestibule
-// auriculaire
-// tambouriner
-// ornytorinque
-// callypige
-// usurpation
-// foutriquet
-// cubitus
-// cuticule
-// saperlipopète
-// diatribe
-// transistor
-// médiator
-// Mulhouse
-// TODO à continuer
-
-// Init du terrain de basketball
+// Init du terrain
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 
-// Variables du jeu de paume
-let balleDePingPong = {
+// Variables
+let ball = {
     x: 100,
     y: 250,
     radius: 15,
@@ -40,7 +13,7 @@ let balleDePingPong = {
     maxPower: 20,
 };
 
-// Position du buuuuuuuuuuut
+// Position du but
 const goal = {
     x: 750,
     y: 200,
@@ -49,20 +22,20 @@ const goal = {
     color: "white",
 };
 
-// Position de la souris (pas très cruelty free)
+// Position de la souris
 let mouseX = 0;
 let mouseY = 0;
 
-// Fonction pour desssiner un ballon de type footballistique
+// Fonction pour dessiner un ballon
 function drawBall() {
     ctx.beginPath();
-    ctx.arc(balleDePingPong.x, balleDePingPong.y, balleDePingPong.radius, 0, Math.PI * 2);
-    ctx.fillStyle = balleDePingPong.color;
+    ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
+    ctx.fillStyle = ball.color;
     ctx.fill();
     ctx.closePath();
 }
 
-// Fonction pour dessiner le buuuuuuuuuut
+// Fonction pour dessiner le but
 function drawGoal() {
     // potos
     ctx.fillStyle = goal.color;
@@ -92,11 +65,11 @@ function drawGoal() {
 }
 
 
-// commentaire générée automatiquement par ChatGPT (à enlever avant la MR)
+// dessiner la ligne de pouvoir
 function drawPowerLine() {
-    if (balleDePingPong.isDragging) {
+    if (ball.isDragging) {
         ctx.beginPath();
-        ctx.moveTo(balleDePingPong.x, balleDePingPong.y);
+        ctx.moveTo(ball.x, ball.y);
         ctx.lineTo(mouseX, mouseY);
         ctx.strokeStyle = "rgba(255, 0, 0, 0.5)";
         ctx.lineWidth = 3;
@@ -104,96 +77,91 @@ function drawPowerLine() {
     }
 }
 
-function okayyyLetsGo() {
+function update() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawGoal();
     drawBall();
     drawPowerLine();
 }
 
-// bon t'as compris le principe tu sais lire frérot
 function shootBall() {
-    if (balleDePingPong.isDragging) {
-        const dx = balleDePingPong.x - mouseX;
-        const dy = balleDePingPong.y - mouseY;
+    if (ball.isDragging) {
+        const dx = ball.x - mouseX;
+        const dy = ball.y - mouseY;
         const distance = Math.sqrt(dx * dx + dy * dy);
-        const power = Math.min(distance / 10, balleDePingPong.maxPower);
+        const power = Math.min(distance / 10, ball.maxPower);
 
         const vx = (dx / distance) * power * -1;
         const vy = (dy / distance) * power * -1;
 
         // Animation du tir
         const animation = setInterval(() => {
-            balleDePingPong.x += vx;
-            balleDePingPong.y += vy;
+            ball.x += vx;
+            ball.y += vy;
 
             // Vérification si le ballon est dans le but
             if (
-                balleDePingPong.x + balleDePingPong.radius > goal.x &&
-                balleDePingPong.x - balleDePingPong.radius < goal.x + goal.width &&
-                balleDePingPong.y + balleDePingPong.radius > goal.y &&
-                balleDePingPong.y - balleDePingPong.radius < goal.y + goal.height
+                ball.x + ball.radius > goal.x &&
+                ball.x - ball.radius < goal.x + goal.width &&
+                ball.y + ball.radius > goal.y &&
+                ball.y - ball.radius < goal.y + goal.height
             ) {
                 alert("Champion cousin !");
                 clearInterval(animation);
-                iRecupTheBall();
+                resetBall();
             }
 
             // Vérification si le ballon sort du canvas
             if (
-                balleDePingPong.x < 0 ||
-                balleDePingPong.x > canvas.width ||
-                balleDePingPong.y < 0 ||
-                balleDePingPong.y > canvas.height
+                ball.x < 0 ||
+                ball.x > canvas.width ||
+                ball.y < 0 ||
+                ball.y > canvas.height
             ) {
                 alert("C'est une passe pour Thomas Pesquier ou quoi ?");
                 clearInterval(animation);
-                iRecupTheBall();
+                resetBall();
             }
 
-            okayyyLetsGo();
+            update();
         }, 16);
     }
 }
 
-// I recup the balleDePingPong (personne aura la rèf)
-function iRecupTheBall() {
-    balleDePingPong.x = 100;
-    balleDePingPong.y = 250;
-    balleDePingPong.isDragging = false;
+function resetBall() {
+    ball.x = 100;
+    ball.y = 250;
+    ball.isDragging = false;
 }
 
-// une souris vert, qui courrait dans l'herbe
-// je l'attrape par la queue, je la montre à ces messieurs
 canvas.addEventListener("mousedown", (e) => {
     const rect = canvas.getBoundingClientRect();
     mouseX = e.clientX - rect.left;
     mouseY = e.clientY - rect.top;
 
     const distance = Math.sqrt(
-        Math.pow(mouseX - balleDePingPong.x, 2) + Math.pow(mouseY - balleDePingPong.y, 2)
+        Math.pow(mouseX - ball.x, 2) + Math.pow(mouseY - ball.y, 2)
     );
 
-    if (distance <= balleDePingPong.radius) {
-        balleDePingPong.isDragging = true;
+    if (distance <= ball.radius) {
+        ball.isDragging = true;
     }
 });
 
 canvas.addEventListener("mousemove", (e) => {
-    if (balleDePingPong.isDragging) {
+    if (ball.isDragging) {
         const rect = canvas.getBoundingClientRect();
         mouseX = e.clientX - rect.left;
         mouseY = e.clientY - rect.top;
-        okayyyLetsGo();
+        update();
     }
 });
 
 canvas.addEventListener("mouseup", () => {
-    if (balleDePingPong.isDragging) {
+    if (ball.isDragging) {
         shootBall();
-        balleDePingPong.isDragging = false;
+        ball.isDragging = false;
     }
 });
 
-// Okayyyyy let's go !
-okayyyLetsGo();
+update();
