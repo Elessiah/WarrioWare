@@ -7,6 +7,11 @@
 // estoc
 // monolythe
 // esperanto
+// antipode
+// pupitre
+// vestibule
+// auriculaire
+// tambouriner
 // TODO à continuer
 
 // Récupération du canvas et du contexte
@@ -37,7 +42,7 @@ const goal = {
 let mouseX = 0;
 let mouseY = 0;
 
-// Fonction pour dessiner un ballon de type footballistique
+// Fonction pour desssiner un ballon de type footballistique
 function drawBall() {
     ctx.beginPath();
     ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
