@@ -1,0 +1,45 @@
+body {
+        font-family: Arial;
+        margin: 0;
+        overflow: hidden;
+        height: 100vh;
+        width: 100vw;
+        background: #f6f6f6;
+    }
+
+    #timer {
+        font-size: 3rem;
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        color: red;
+        z-index: 1000;
+    }
+
+    /* Fils */
+    .item {
+        position: fixed;
+        left: 20px;
+        width: 150px;
+        padding: 10px;
+        border: 2px solid black;
+        border-radius: 8px;
+        background: white;
+        cursor: grab;
+        font-size: 1.2rem;
+    }
+
+    /* Prises */
+    .target {
+        position: fixed;
+        width: 150px;
+        height: 50px;
+        border: 2px dashed black;
+        border-radius: 8px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #e9e9e9;
+        font-size: 1.2rem;
+    }
