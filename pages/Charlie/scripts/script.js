@@ -91,7 +91,7 @@ function startTimer() {
         timeLeft -= 100;
         updateTimer();
         
-        if (timeLeft <= 0) {
+        if (timeLeft <= 0 && score === 0) {
             endGame();
         }
     }, 100);
@@ -105,10 +105,7 @@ function updateTimer() {
 
 // Fin de la partie (défaite)
 function endGame() {
-    clearInterval(gameInterval);
-    finalScoreElement.textContent = `Score final : ${score}`;
-    document.querySelector('.game-over h2').textContent = 'Partie terminée !';
-    gameOverElement.style.display = 'flex';
+    window.location.href = "../pageGameOver/gameOver.html";
 }
 
 // Victoire du joueur

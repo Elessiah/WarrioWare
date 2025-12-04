@@ -58,5 +58,5 @@ function win() {
 
 function lose() {
     clearInterval(countdown);
-    window.location.href = "page_fail.html";
+    window.location.href = "../pageGameOver/gameOver.html";
 }

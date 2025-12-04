@@ -97,8 +97,7 @@ function endGame(success) {
         resultElement.textContent = '✓ SUCCÈS !';
         resultElement.className = 'result success';
     } else {
-        resultElement.textContent = '✗ ÉCHEC !';
-        resultElement.className = 'result failure';
+        window.location.href = "../pageGameOver/gameOver.html";
     }
 }
 

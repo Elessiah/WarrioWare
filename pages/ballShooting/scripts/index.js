@@ -26,6 +26,15 @@ const goal = {
 let mouseX = 0;
 let mouseY = 0;
 
+let inactivityTimer;
+
+function inactivity() {
+    clearTimeout(inactivityTimer);
+    inactivityTimer = setTimeout(() => {
+        window.location.href = "../pageGameOver/gameOver.html"; // Redirection vers la page gameover
+    }, 5000); // 5 secondes d'inactivité
+}
+
 // Fonction pour dessiner un ballon
 function drawBall() {
     ctx.beginPath();
@@ -162,3 +171,4 @@ canvas.addEventListener("mouseup", () => {
 });
 
 update();
+inactivity();
