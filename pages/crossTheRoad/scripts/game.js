@@ -87,6 +87,7 @@ function gameLoop() {
         window.dispatchEvent(new CustomEvent('gameEnded', {
             detail: { result: 'fail', message: 'Collision avec une voiture !' }
         }));
+        window.location.href = "../pageGameOver/gameOver.html";
         return;
     }
 
