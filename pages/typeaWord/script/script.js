@@ -106,7 +106,7 @@ function endGame(success) {
         }
         resultElement.textContent = '✗ ÉCHEC !';
         resultElement.className = 'result failure';
-        window.location.href = "/pages/pageGameOver/gameOver.html"
+        window.location.href = "../pageGameOver/gameOver.html";
     }
 }
 
