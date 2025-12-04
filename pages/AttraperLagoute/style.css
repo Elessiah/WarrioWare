@@ -1,6 +1,14 @@
 body {
     font-family: sans-serif;
     text-align: center;
+        margin: 0;
+        padding: 0;
+        background-image: url("./background.jpg");
+        background-size: cover;       /* couvre tout l’écran */
+        background-repeat: no-repeat; /* ne pas répéter l’image */
+        background-position: center;  /* centrer */
+        background-attachment: fixed; /* effet fixe (stylé), optionnel */
+    
 }
 
 #gameContainer {
