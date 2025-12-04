@@ -25,11 +25,13 @@ const aaaaaaaaaaa = Math.random() * 360;
 aaaaaa.style.transform = `rotate(${aaaaaaaaaaa}deg)`;
 aaaaaa.addEventListener("click", () => {
 if (src === aaaaa) {
-aa.textContent = "Gagné !";
-aa.style.color = "green";
+    aa.textContent = "Gagné !";
+    aa.style.color = "green";
+    window.location.href = "/pages/Transition/Transition.html"
 } else {
-aa.textContent = "Perdu !";
-aa.style.color = "red";
+    aa.textContent = "Perdu !";
+    aa.style.color = "red";
+    window.location.href = "/pages/pageGameOver/gameOver.html"
 }
 });
 document.body.appendChild(aaaaaa);

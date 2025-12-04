@@ -99,6 +99,7 @@ function endGame(success) {
         }
         resultElement.textContent = '✓ SUCCÈS !';
         resultElement.className = 'result success';
+        window.location.href = "/pages/Transition/Transition.html"
     } else {
         if (typeof audioManager !== 'undefined') {
             audioManager.playLoseSound();

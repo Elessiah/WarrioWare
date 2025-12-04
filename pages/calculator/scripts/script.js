@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Quand le temps est écoulé
         timer = setTimeout(() => {
-            window.location.href = "../pageGameOver/gameOver.html";
+            window.location.href = "/pages/pageGameOver/gameOver.html"
         }, DURATION);
 
         // Détecter Enter
@@ -79,9 +79,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (Number(answerText.value) === result) {
                     isValidAnswer.innerText = "Correct";
                     isValidAnswer.className = "correct";
+                    window.location.href = "/pages/Transition/Transition.html"
                     window.location.href = "../../../index.html"
                 } else {
-                    window.location.href = "../pageGameOver/gameOver.html";
+                    window.location.href = "/pages/pageGameOver/gameOver.html";
                 }
                 document.removeEventListener('keydown', handler); // éviter plusieurs triggers
             }

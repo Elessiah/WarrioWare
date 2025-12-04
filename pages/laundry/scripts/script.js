@@ -51,6 +51,13 @@ bin.addEventListener("drop", e => {
 
 
 function win() {
+    clearInterval(countdown);
+    window.location.href = "/pages/pageGameOver/gameOver.html"
+}
+
+function lose() {
+    clearInterval(countdown);
+    window.location.href = "/pages/Transition/Transition.html"
     gameTimer.stop();
 
     if (typeof audioManager !== 'undefined') {

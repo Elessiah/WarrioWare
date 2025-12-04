@@ -94,7 +94,9 @@ function gameLoop() {
         if (audioManager) audioManager.playWinSound();
         window.dispatchEvent(new CustomEvent('gameEnded', {
             detail: { result: 'success', message: 'Bravo ! Vous avez traversé toutes les routes !' }
+            
         }));
+        window.location.href = "/pages/Transition/Transition.html"
         window.gameTimer.stop();
         return;
     }
@@ -107,6 +109,7 @@ function gameLoop() {
         window.dispatchEvent(new CustomEvent('gameEnded', {
             detail: { result: 'fail', message: 'Collision avec une voiture !' }
         }));
+        window.location.href = "/pages/pageGameOver/gameOver.html"
         window.gameTimer.stop();
         window.location.href = "../pageGameOver/gameOver.html";
         return;

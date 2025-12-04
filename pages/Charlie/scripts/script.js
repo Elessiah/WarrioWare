@@ -105,7 +105,11 @@ function updateTimer() {
 
 // Fin de la partie (défaite)
 function endGame() {
-    window.location.href = "../pageGameOver/gameOver.html";
+    clearInterval(gameInterval);
+    finalScoreElement.textContent = `Score final : ${score}`;
+    document.querySelector('.game-over h2').textContent = 'Partie terminée !';
+    gameOverElement.style.display = 'flex';    window.location.href = "../pageGameOver/gameOver.html";
+
 }
 
 // Victoire du joueur
@@ -114,6 +118,7 @@ function winGame() {
     finalScoreElement.textContent = score;
     document.querySelector('.game-over h2').textContent = 'Félicitations ! Vous avez gagné !';
     gameOverElement.style.display = 'flex';
+    window.location.href = "/pages/Transition/Transition.html"
 }
 
 // Démarrer une nouvelle partie
