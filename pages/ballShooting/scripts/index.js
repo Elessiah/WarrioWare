@@ -37,13 +37,13 @@ function drawBall() {
 
 // Fonction pour dessiner le but
 function drawGoal() {
-    // potos
+    // poteaux
     ctx.fillStyle = goal.color;
     ctx.fillRect(goal.x, goal.y, goal.width, goal.height);
     ctx.strokeStyle = "black";
     ctx.strokeRect(goal.x, goal.y, goal.width, goal.height);
 
-    // filet o fish
+    // filets
     ctx.strokeStyle = "rgba(0,0,0,0.7)";
     ctx.lineWidth = 1;
 
@@ -106,7 +106,6 @@ function shootBall() {
                 ball.y + ball.radius > goal.y &&
                 ball.y - ball.radius < goal.y + goal.height
             ) {
-                alert("Champion cousin !");
                 clearInterval(animation);
                 resetBall();
             }
@@ -118,9 +117,7 @@ function shootBall() {
                 ball.y < 0 ||
                 ball.y > canvas.height
             ) {
-                alert("C'est une passe pour Thomas Pesquier ou quoi ?");
-                clearInterval(animation);
-                resetBall();
+                window.location.href = "../pageGameOver/gameOver.html";
             }
 
             update();
