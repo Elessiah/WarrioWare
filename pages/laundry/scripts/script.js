@@ -19,15 +19,14 @@ for (let i = 0; i < sockCount; i++) {
     document.body.appendChild(sock);
 }
 
-let time = 5;
-const timer = document.getElementById("timer");
+// Fonction appelée quand le temps est écoulé
+function onTimeUp() {
+    lose();
+}
 
-const countdown = setInterval(() => {
-    time--;
-    timer.textContent = time;
-
-    if (time <= 0) lose();
-}, 1000);
+// Initialiser le timer 5 secondes
+gameTimer = new TimerBomb(5000, onTimeUp);
+gameTimer.start();
 
 let dragged = null;
 
@@ -52,8 +51,15 @@ bin.addEventListener("drop", e => {
 
 
 function win() {
-    clearInterval(countdown);
-    window.location.href = "page_success.html";
+    gameTimer.stop();
+
+    if (typeof audioManager !== 'undefined') {
+        audioManager.playWinSound();
+    }
+
+    setTimeout(() => {
+        window.location.href = "page_success.html";
+    }, 1000);
 }
 
 function lose() {

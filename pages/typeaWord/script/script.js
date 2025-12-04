@@ -90,13 +90,21 @@ function endGame(success) {
     if (gameEnded) return;
     
     gameEnded = true;
-    clearInterval(timerInterval);
     inputField.disabled = true;
     
     if (success) {
+        gameTimer.stop();
+        if (typeof audioManager !== 'undefined') {
+            audioManager.playWinSound();
+        }
         resultElement.textContent = '✓ SUCCÈS !';
         resultElement.className = 'result success';
     } else {
+        if (typeof audioManager !== 'undefined') {
+            audioManager.playLoseSound();
+        }
+        resultElement.textContent = '✗ ÉCHEC !';
+        resultElement.className = 'result failure';
         window.location.href = "../pageGameOver/gameOver.html";
     }
 }
