@@ -45,8 +45,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Quand le temps est écoulé
         timer = setTimeout(() => {
-            isValidAnswer.innerText = "Trop tard !";
-            isValidAnswer.className = "error";
+            window.location.href = "../pageGameOver/gameOver.html";
         }, DURATION);
 
         // Détecter Enter
@@ -57,8 +56,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     isValidAnswer.innerText = "Correct";
                     isValidAnswer.className = "correct";
                 } else {
-                    isValidAnswer.innerText = "Incorrect";
-                    isValidAnswer.className = "error";
+                    window.location.href = "../pageGameOver/gameOver.html";
                 }
                 document.removeEventListener('keydown', handler); // éviter plusieurs triggers
             }
