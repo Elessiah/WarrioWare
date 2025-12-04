@@ -58,6 +58,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (Number(answerText.value) === result) {
                     isValidAnswer.innerText = "Correct";
                     isValidAnswer.className = "correct";
+                    //window.location.href = ""; //game win
                 } else {
                     isValidAnswer.innerText = "Incorrect";
                     isValidAnswer.className = "error";
