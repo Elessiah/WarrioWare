@@ -12,12 +12,22 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Fonction pour générer une nouvelle opération
     function generateOperation() {
-        const n1 = Math.floor(Math.random() * 20);
-        const n2 = Math.floor(Math.random() * 20);
+        const n1 = Math.floor(Math.random() * 10);
+        const n2 = Math.floor(Math.random() * 5);
         const opeIndex = Math.floor(Math.random() * 5);
+        let result;
 
         // Calcul du résultat
-        let result= n1 + n2;
+        if (operation[opeIndex] === "+"){
+            result = n1 + n2;
+        } else if (operation[opeIndex] === "-"){
+            result = n1 - n2;
+        } else if (operation[opeIndex] === "*"){
+            result = n1 * n2
+        } else {
+            result = n1 / n2
+        }
+
 
         // Affichage du calcul
         calculText.innerText = `${n1} ${operation[opeIndex]} ${n2}`;
@@ -55,6 +65,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (Number(answerText.value) === result) {
                     isValidAnswer.innerText = "Correct";
                     isValidAnswer.className = "correct";
+                    window.location.href = "../../../index.html"
                 } else {
                     window.location.href = "../pageGameOver/gameOver.html";
                 }
