@@ -63,9 +63,20 @@ function fonc(dx, dy) {
 
     if (f[p][o] === 1 ) return;
 
-
     g.x = o;
     g.y = p;
+
+    // Vérifier si le joueur a atteint la sortie (case 3)
+    if (f[p][o] === 3 && !gameEnded) {
+        gameEnded = true;
+        gameTimer.stop();
+        if (typeof audioManager !== 'undefined') {
+            audioManager.playWinSound();
+        }
+        setTimeout(() => {
+            alert("Félicitations ! Tu as trouvé la sortie !");
+        }, 500);
+    }
 
     func();
 }

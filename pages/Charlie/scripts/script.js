@@ -22,7 +22,7 @@ let correctIndex;
 
 function createBoard() {
     board.innerHTML = '';
-    
+
     const correctImageIndex = Math.floor(Math.random() * 2);
     correctIndex = Math.floor(Math.random() * GRID_SIZE);
     
@@ -35,25 +35,36 @@ function createBoard() {
         img.alt = i === correctIndex ? 'Bon Wario' : 'Mauvais Wario';
         
         cell.appendChild(img);
-        
+
         cell.addEventListener('click', () => handleCellClick(i));
         
         board.appendChild(cell);
     }
 }
 
-function handleCellClick(index) {
-    if (index === correctIndex) {
+function handleCellClick(i) {
+    if (i === correctIndex) {
         score++;
         updateScore();
-        
+        if (audioManager) audioManager.playButtonSound();
         if (score >= WINNING_SCORE) {
-            winGame();
+            if (audioManager) audioManager.playWinSound();
+            endGame(true);
         } else {
-            // On ne réinitialise plus le timer, on change juste le plateau
             createBoard();
         }
+    } else {
+        if (audioManager) audioManager.playLoseSound();
+        endGame(false);
     }
+}
+
+// Réinitialiser le tour
+function resetRound() {
+    clearInterval(gameInterval);
+    timeLeft = GAME_DURATION;
+    createBoard();
+    startTimer();
 }
 
 function updateScore() {
@@ -103,3 +114,12 @@ function startGame() {
 }
 
 window.onload = startGame;
+
+// Initialisation AudioManager
+let audioManager;
+window.addEventListener('DOMContentLoaded', () => {
+    if (typeof AudioManager !== 'undefined') {
+        audioManager = new AudioManager();
+        audioManager.playPrincipalMusic();
+    }
+});
