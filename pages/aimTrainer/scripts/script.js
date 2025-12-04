@@ -43,6 +43,9 @@ btn.addEventListener("click", () => {
   score++;
   scoreDisplay.textContent = "Score : " + score;
 
+  if (score >= 3) {
+    scoreDisplay.textContent += " — Je t'ai bien eu Keryan 😄";
+  }
   // Geler le bouton 0.2s avant qu'il ne bouge
   clearTimeout(timer);
   clearTimeout(freezeTimeout);
