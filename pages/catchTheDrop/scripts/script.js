@@ -78,6 +78,8 @@ dropFall();
 // Fin du jeu
 function gameOver(success) {
     dropFalling = false;
-    message.textContent = success ? "Succès ! Tu as attrapé la goutte !" : "Échec ! La goutte est tombée.";
+    if ( !success ){
+        window.location.href = "../pageGameOver/gameOver.html";
+    }
     console.log(success ? "success" : "fail");
 }

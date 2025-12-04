@@ -23,23 +23,22 @@
     </div>
 
     <script>
-        const urls = [
-            "https://example1.com", /*Url vers pages des jeux*/
-            "https://example2.com",
-            "https://example3.com",
-            "https://exampe4.com",
-            "https://example5.com",
-            "https://example6.com",
-            "https://example7.com",
-            "https://example8.com",
-            "https://example9.com",
+        const games = [
+            /*Url vers pages des jeux*/
+            "pages/aimTrainer/aimTrainer.html",
+            "pages/cableConnect/cableConnect.html",
+            "pages/calculator/calculator.html",
+            "pages/catchTheDrop/catchTheDrop.html",
+            "pages/crossTheRoad/crossTheRoad.html",
+            "pages/matchColor/matchColor.html",
+            "pages/labyrinth/labyrinth.html"
         ];
 
         const startButton = document.getElementById("startButton");
 
         startButton.addEventListener("click", () => {
-            const randomIndex = Math.floor(Math.random() * urls.length);
-            const randomUrl = urls[randomIndex];
+            const randomIndex = Math.floor(Math.random() * games.length);
+            const randomUrl = games[randomIndex];
             window.location.href = randomUrl; 
         });
     </script>
