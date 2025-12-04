@@ -1,28 +1,16 @@
-body {
-  height: 100vh;
-  margin: 0;
+/* wrapper centré */
+.center-wrap {
+  width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #f0f0f0;
-  font-family: Arial, sans-serif;
 }
 
-#game-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-#game-area {
-  width: 600px;
-  height: 400px;
-  position: relative;
-  background: #ffffff;
-  border: 3px solid #333;
-  border-radius: 10px;
-  overflow: hidden;
-  margin-bottom: 20px;
+/* plateau déjà stylé, mais on ajoute une limite */
+#board {
+  max-width: 90vw;
+  max-height: 90vh;
 }
 
 #btn {
