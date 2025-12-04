@@ -20,11 +20,11 @@ function placeButton() {
   btn.style.top = y + "px";
 
   clearTimeout(timer);
-  timer = setTimeout(placeButton, 600); // bouton se déplace toutes les 0.5s
+  timer = setTimeout(placeButton, 600); 
 }
 
 function clickEffect() {
-  btn.style.background = "#4caf50"; // vert
+  btn.style.background = "#4caf50";
   btn.style.transform = "scale(1.3)";
 
   setTimeout(() => {
@@ -34,27 +34,23 @@ function clickEffect() {
 }
 
 btn.addEventListener("click", () => {
-  // Désactiver le bouton pour empêcher les clics multiples
   btn.disabled = true;
 
   clickEffect();
 
-  // Augmenter le score
   score++;
   scoreDisplay.textContent = "Score : " + score;
 
   if (score >= 3) {
     scoreDisplay.textContent += " — Je t'ai bien eu Keryan 😄";
   }
-  // Geler le bouton 0.2s avant qu'il ne bouge
   clearTimeout(timer);
   clearTimeout(freezeTimeout);
 
   freezeTimeout = setTimeout(() => {
-    placeButton(); // Repositionne le bouton
-    btn.disabled = false; // Réactive le bouton
+    placeButton(); 
+    btn.disabled = false; 
   }, 200);
 });
 
-// Lancer le bouton pour la première fois
 placeButton();
