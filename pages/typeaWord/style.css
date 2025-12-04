@@ -2,6 +2,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            display: none;
         }
 
         body {
@@ -324,5 +325,4 @@
             .result {
                 font-size: 28px;
             }
-                    display: none;
         }

@@ -32,6 +32,13 @@ document.getElementById("click-area").addEventListener("click", () => {
 
 
 function win() {
+    clearInterval(countdown);
+    window.location.href = "/pages/Transition/Transition.html"
+}
+
+function lose() {
+    clearInterval(countdown);
+    window.location.href = "/pages/pageGameOver/gameOver.html"
     gameTimer.stop();
 
     if (typeof audioManager !== 'undefined') {
