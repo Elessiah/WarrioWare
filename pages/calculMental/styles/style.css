@@ -60,3 +60,19 @@ label {
 #isValidAnswer.error {
     color: #ef4444; /* Rouge */
 }
+
+#timer-bar {
+    width: 300px;
+    height: 15px;
+    background: rgba(255,255,255,0.3);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-top: 20px;
+}
+
+#timer-fill {
+    width: 100%;
+    height: 100%;
+    background: #4ade80; /* Vert */
+    transition: width linear;
+}

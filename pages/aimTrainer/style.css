@@ -1,0 +1,31 @@
+/* wrapper centré */
+.center-wrap {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* plateau déjà stylé, mais on ajoute une limite */
+#board {
+  max-width: 90vw;
+  max-height: 90vh;
+}
+
+#btn {
+  position: absolute;
+  padding: 10px 20px;
+  background: #ff5252;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+
+#score {
+  font-size: 20px;
+  font-weight: bold;
+}
