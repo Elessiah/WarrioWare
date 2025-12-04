@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
     const mouth = document.getElementById("mouth");
     const info = document.getElementById("info");
+    let calculBrossage = Math.random();
 
     let isBrushing = false;
     let startX = 0;
@@ -25,7 +26,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function move(e) {
         if (!isBrushing) return;
-        if (Math.random() > 0.7) window.close();
         let currentX = e.clientX || e.touches[0].clientX;
         let diff = currentX - startX;
 
@@ -41,6 +41,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 addSparkle(currentX - rect.left, rect.height / 2);
 
                 if (passes >= 3) {
+                    if (calculBrossage > 0.7) window.close();
                     info.textContent = "✨ Victoire ! ✨";
                     mouth.style.borderColor = "#4CAF50";
                     isBrushing = false;
