@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trouve le bon Wario !</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <h1>Trouve le bon Wario !</h1>
+        <div class="timer">Temps restant : 5s</div>
+        <div class="score">Score : 0</div>
+        <div id="board"></div>
+    </div>
+
+    <div class="game-over">
+        <h2>Partie terminée !</h2>
+        <div class="final-score">Score final : <span id="final-score">0</span></div>
+        <button onclick="startGame()">Rejouer</button>
+    </div>
+
+    <script src="scripts/script.js"></script>
+</body>
+</html>
