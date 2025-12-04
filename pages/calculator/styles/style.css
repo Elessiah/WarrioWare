@@ -14,6 +14,11 @@ body {
     height: 100vh;
     background: linear-gradient(135deg, #3b82f6, #9333ea);
     color: white;
+    background-image: url(../../../images/backgroundInGames.jpg);
+    background-color: #111;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 /* Affichage de l'opération */
