@@ -41,6 +41,9 @@ btn.addEventListener("click", () => {
   clickEffect();
   score++;
   scoreDisplay.textContent = "Score : " + score;
+  if (score >= 3) {
+    scoreDisplay.textContent += " — Je t'ai bien eu Keryan 😄";
+  }
   clearTimeout(timer);
   clearTimeout(freezeTimeout);
   freezeTimeout = setTimeout(() => {
