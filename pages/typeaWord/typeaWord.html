@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini-jeu de Frappe Rapide</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <h1>⚡ Speed Typing Challenge</h1>
+        <p class="subtitle">Tapez le mot avant la fin du temps imparti !</p>
+        
+        <div class="word-container">
+            <div class="word-label">Mot à taper</div>
+            <div class="word-display" id="wordDisplay"></div>
+        </div>
+        
+        <div class="timer-container">
+            <div class="timer-label">⏱️ Temps</div>
+            <div class="timer" id="timer">5</div>
+        </div>
+        
+        <div class="input-wrapper">
+            <input 
+                type="text" 
+                id="inputField" 
+                class="input-field" 
+                placeholder="Tapez ici..."
+                autocomplete="off"
+                spellcheck="false"
+            >
+            <span class="input-icon">⌨️</span>
+        </div>
+        
+        <div class="result" id="result"></div>
+    </div>
+    
+    <script src="script/script.js"></script>
+</body>
+</html>
