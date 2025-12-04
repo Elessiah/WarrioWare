@@ -1,0 +1,226 @@
+/* Reset et styles de base */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f0f0f0;
+  font-family: Arial, sans-serif;
+  padding: 15px;
+  overflow: hidden;
+}
+
+/* Conteneur principal */
+.game-container {
+  text-align: center;
+  width: 100%;
+  max-width: 800px; /* Augmentation de la largeur maximale */
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+
+/* En-tête */
+h1 {
+  font-size: 1.5rem;
+  margin: 0;
+  color: #333;
+}
+
+/* Indicateurs de jeu */
+.timer, .score {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin: 5px 0;
+  color: #333;
+}
+
+/* Grille de jeu */
+#board {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr); 
+  gap: 4px; 
+  background: #fff;
+  border: 2px solid #333;
+  border-radius: 10px;
+  padding: 8px;
+  width: 100%;
+  flex: 1;
+  overflow-y: auto; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  scrollbar-width: thin; 
+  scrollbar-color: #888 #f1f1f1;
+}
+
+#board::-webkit-scrollbar {
+  width: 8px;
+}
+
+#board::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+#board::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+#board::-webkit-scrollbar-thumb:hover {
+  background: #666;
+}
+
+/* Cellules de la grille */
+.cell {
+  background: #f8f8f8;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  overflow: hidden;
+  aspect-ratio: 1;
+  min-width: 0; 
+}
+
+.cell:hover {
+  transform: scale(1.05);
+  background: #f0f0f0;
+  z-index: 1;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.cell img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  padding: 5px;
+}
+
+/* Écran de fin de partie */
+.game-over {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.9);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: white;
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  padding: 20px;
+  z-index: 100;
+}
+
+.game-over button {
+  margin-top: 20px;
+  padding: 12px 24px;
+  background: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.game-over button:hover {
+  background: #45a049;
+  transform: translateY(-2px);
+}
+
+.cell.found {
+  animation: pulseFound 0.7s ease-in-out forwards;
+  border-color: #4CAF50;
+  background: #e8f5e9;
+}
+
+@keyframes pulseFound {
+  0% {
+    transform: scale(1);
+    filter: saturate(1);
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  }
+  50% {
+    transform: scale(1.1);
+    filter: saturate(1.2);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  100% {
+    transform: scale(1.05) translateY(-4px);
+    filter: saturate(1.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+}
+
+@keyframes popFade {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (max-width: 900px) {
+  #board {
+    grid-template-columns: repeat(8, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .game-container {
+    max-width: 100%;
+    padding: 5px;
+  }
+  
+  #board {
+    grid-template-columns: repeat(5, 1fr); 
+    gap: 3px;
+    padding: 5px;
+  }
+  
+  h1 {
+    font-size: 1.2rem;
+  }
+  
+  .timer, .score {
+    font-size: 0.9rem;
+  }
+  
+  .game-over {
+    font-size: 1.2rem;
+    padding: 10px;
+  }
+  
+  .game-over h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .game-over button {
+    font-size: 0.9rem;
+    padding: 8px 16px;
+  }
+}

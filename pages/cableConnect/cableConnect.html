@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Jeu des Fils</title>
+<script src="../../scripts/audio/audioConfig.js"></script>
+<script src="../../scripts/audio/AudioManager.js"></script>
+<script src="../../scripts/audio/audioInit.js"></script>
+<link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+
+<div id="timer">5</div>
+
+<div class="item" draggable="true" id="rouge">🔴 Fil Rouge</div>
+<div class="item" draggable="true" id="jaune">🟡 Fil Jaune</div>
+<div class="item" draggable="true" id="bleu">🔵 Fil Bleu</div>
+
+<div class="target" data-color="rouge">Prise Rouge</div>
+<div class="target" data-color="jaune">Prise Jaune</div>
+<div class="target" data-color="bleu">Prise Bleu</div>
+<svg id="cableLayer">
+    <line id="cable" x1="0" y1="0" x2="0" y2="0" stroke-width="6" stroke-linecap="round" visibility="hidden"/>
+</svg>
+
+<script src="scripts/script.js"></script>
+
+</body>
+</html>

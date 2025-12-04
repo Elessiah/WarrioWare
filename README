@@ -1,0 +1,94 @@
+# 1. Nommer ton commit pour qu’il réponde au ticket
+
+Tu fais simplement référence au numéro du ticket dans ton message de commit.
+Exemples :
+
+**GitHub / GitLab / Bitbucket :**
+
+```
+git commit -m "Fix #123: corrige le bug de connexion"
+```
+
+Ce commit va automatiquement :
+
+* Lier ton commit au ticket **#123**
+* Afficher le commit dans la discussion du ticket
+* Possiblement **fermer automatiquement** le ticket (selon plateforme)
+
+Commande pour pousser :
+
+```
+git push
+```
+
+---
+
+# 2. Fermer le ticket automatiquement via commit
+
+Selon la plateforme, tu peux utiliser des mots-clés :
+
+### GitHub
+
+```
+git commit -m "Closes #123: empêche la déconnexion automatique"
+```
+
+### GitLab
+
+```
+git commit -m "Fixes #123: améliore la gestion des erreurs"
+```
+
+Puis push :
+
+```
+git push origin <ta-branche>
+```
+
+---
+
+# 3. Via une branche dédiée
+
+Tu peux aussi créer une branche qui porte le numéro du ticket :
+
+```
+git checkout -b feature/123-login-bugfix
+```
+
+Puis commits :
+
+```
+git commit -m "Fix #123: correction des headers"
+git push origin feature/123-login-bugfix
+```
+
+Dans la MR/PR :
+
+* Le ticket sera automatiquement pré-rempli
+* Le lien vers le ticket sera visible
+
+---
+
+# Résumé opérationnel
+
+**Commit lié :**
+
+```
+git add .
+git commit -m "Fix #123: description"
+git push
+```
+
+**Commit qui ferme le ticket :**
+
+```
+git commit -m "Closes #123: description"
+git push
+```
+
+**Branche liée :**
+
+```
+git checkout -b 123-nom-de-la-tache
+git push --set-upstream origin 123-nom-de-la-tache
+```
