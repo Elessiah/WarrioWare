@@ -6,6 +6,7 @@ const message = document.getElementById("message");
 let bucketSpeed = 10;
 let dropFalling = true;
 let dropSpeed = 2;
+let gameTimer;
 
 // Position initiale totalement aléatoire
 let screenWidth = 600; // adapte selon ta scène
@@ -16,12 +17,16 @@ let posX = Math.random() * (maxX - minX) + minX;
 drop.style.left = posX + "px";
 
 
-// Timer 5 secondes
-setTimeout(() => {
+// Fonction appelée quand le temps est écoulé
+function onTimeUp() {
     if (dropFalling) {
         gameOver(false);
     }
-}, 5000);
+}
+
+// Initialiser le timer 5 secondes
+gameTimer = new TimerBomb(5000, onTimeUp);
+gameTimer.start();
 
 // Déplacement du nuage
 let cloudPos = 0;
@@ -111,11 +116,34 @@ function dropFall() {
 }
 dropFall();
 
+// Initialisation AudioManager
+let audioManager;
+window.addEventListener('DOMContentLoaded', () => {
+    if (typeof AudioManager !== 'undefined') {
+        audioManager = new AudioManager();
+        audioManager.playPrincipalMusic();
+    }
+});
+
 // Fin du jeu
 function gameOver(success) {
     dropFalling = false;
     if ( !success ){
         window.location.href = "../pageGameOver/gameOver.html";
     }
+
+    if (success) {
+        gameTimer.stop();
+    }
+
+    if (success) {
+        message.textContent = "Bravo ! Vous avez attrapé la goutte !";
+        if (audioManager) audioManager.playWinSound();
+    } else {
+        message.textContent = "Perdu !";
+        if (audioManager) audioManager.playLoseSound();
+    }
+    setTimeout(() => window.location.reload(), 2000);
+
     console.log(success ? "success" : "fail");
 }

@@ -5,10 +5,10 @@ document.addEventListener('DOMContentLoaded', function () {
     const calculText = document.getElementById("calcul");
     const answerText = document.getElementById("answer");
     const isValidAnswer = document.getElementById("isValidAnswer");
-    const timerFill = document.getElementById("timer-fill");
 
     const DURATION = 5000; // 5 secondes
-    let timer; // Pour clearTimeout
+    let gameTimer; // Instance du TimerBomb
+    let currentResult; // Résultat attendu
 
     // Fonction pour générer une nouvelle opération
     function generateOperation() {
@@ -36,18 +36,32 @@ document.addEventListener('DOMContentLoaded', function () {
         answerText.value = "";
         isValidAnswer.innerText = "";
         isValidAnswer.className = "";
+        answerText.focus();
 
         // Lancer le timer
-        startTimer(result);
+        startTimer();
     }
 
     // Fonction pour démarrer le timer
-    function startTimer(result) {
-        // Reset barre
-        timerFill.style.transition = "none";
-        timerFill.style.width = "100%";
+    function startTimer() {
+        if (gameTimer) {
+            gameTimer.destroy();
+        }
 
-        // Déclencher l’animation
+        gameTimer = new TimerBomb(DURATION, onTimeUp);
+        gameTimer.start();
+    }
+
+    // Fonction appelée quand le temps est écoulé
+    function onTimeUp() {
+        isValidAnswer.innerText = "💥 Trop tard !";
+        isValidAnswer.className = "error";
+
+        if (typeof audioManager !== 'undefined') {
+            audioManager.playGameOverSound();
+        }
+
+
         setTimeout(() => {
             timerFill.style.transition = `width ${DURATION}ms linear`;
             timerFill.style.width = "0%";
@@ -71,9 +85,33 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
                 document.removeEventListener('keydown', handler); // éviter plusieurs triggers
             }
-        };
-        document.addEventListener('keydown', handler);
+
+            setTimeout(() => {
+                generateOperation();
+            }, 1000);
+        } else {
+            gameTimer.explode();
+            isValidAnswer.innerText = "❌ Incorrect !";
+            isValidAnswer.className = "error";
+
+            setTimeout(() => {
+                if (typeof audioManager !== 'undefined') {
+                    audioManager.playGameOverSound();
+                }
+                window.location.href = '../PageGameOver/GameOver.html';
+            }, 2000);
+        }
     }
+
+    // Détecter la touche Enter
+    answerText.addEventListener('keydown', function(event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            if (answerText.value.trim() !== "") {
+                checkAnswer();
+            }
+        }
+    });
 
     // Générer la première opération
     generateOperation();

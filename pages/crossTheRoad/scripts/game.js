@@ -3,6 +3,26 @@ import { Player } from './Player.js';
 import { Road } from './Road.js';
 import { drawBackground, checkCollision } from './utils.js';
 
+// Ajout AudioManager et TimerBomb
+let audioManager;
+if (typeof window !== 'undefined') {
+    window.addEventListener('DOMContentLoaded', () => {
+        if (typeof AudioManager !== 'undefined') {
+            audioManager = new AudioManager();
+            audioManager.playPrincipalMusic();
+        }
+        // Timer de 15 secondes pour traverser
+        window.gameTimer = new TimerBomb(15000, onTimeUp);
+        window.gameTimer.start();
+    });
+}
+
+function onTimeUp() {
+    if (audioManager) audioManager.playGameOverSound();
+    alert('Temps écoulé !');
+    window.location.href = '../PageGameOver/gameOver.html';
+}
+
 // Récupération des éléments DOM
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
@@ -71,10 +91,11 @@ function gameLoop() {
     if (player.hasReachedEnd()) {
         gameState.isRunning = false;
         gameState.gameResult = 'success';
-
+        if (audioManager) audioManager.playWinSound();
         window.dispatchEvent(new CustomEvent('gameEnded', {
             detail: { result: 'success', message: 'Bravo ! Vous avez traversé toutes les routes !' }
         }));
+        window.gameTimer.stop();
         return;
     }
 
@@ -82,11 +103,11 @@ function gameLoop() {
     if (checkAllCollisions()) {
         gameState.isRunning = false;
         gameState.gameResult = 'fail';
-
-        // Informer le système principal
+        if (audioManager) audioManager.playLoseSound();
         window.dispatchEvent(new CustomEvent('gameEnded', {
             detail: { result: 'fail', message: 'Collision avec une voiture !' }
         }));
+        window.gameTimer.stop();
         window.location.href = "../pageGameOver/gameOver.html";
         return;
     }
@@ -110,6 +131,25 @@ function startGame() {
 
     // Vider les routes
     roads.forEach(road => road.reset());
+
+    // Fonction appelée quand le temps est écoulé
+    function onTimeUp() {
+        if (gameState.isRunning) {
+            gameState.isRunning = false;
+            gameState.gameResult = 'timeout';
+
+            window.dispatchEvent(new CustomEvent('gameEnded', {
+                detail: { result: 'fail', message: 'Temps écoulé !' }
+            }));
+        }
+    }
+
+    // Initialiser le timer 5 secondes
+    if (gameTimer) {
+        gameTimer.destroy();
+    }
+    gameTimer = new TimerBomb(5000, onTimeUp);
+    gameTimer.start();
 
     // Lancer la boucle de jeu
     gameLoop();
@@ -158,4 +198,3 @@ window.addEventListener('load', () => {
 
 // Exposer la fonction pour récupérer le résultat (pour intégration)
 window.getCrossyroadResult = getGameResult;
-

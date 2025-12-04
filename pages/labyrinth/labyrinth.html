@@ -1,54 +1,53 @@
 <!DOCTYPE html>
 <html lang="fr">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Labyrinthe</title>
     <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            min-height: 100vh;
-            margin: 0;
-            background-color: #f0f0f0;
-            font-family: Arial, sans-serif;
-        }
-        .game-container {
-            text-align: center;
-        }
-        #game {
-            border: 3px solid #333;
-            border-radius: 8px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-            background-color: white;
-        }
-        .success-message {
-            font-size: 1.5em;
-            color: #4CAF50;
-            font-weight: bold;
-            margin: 20px 0;
-            padding: 10px 20px;
-            background-color: rgba(255, 255, 255, 0.8);
-            border-radius: 20px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        min-height: 100vh;
+        margin: 0;
+        background-color: #f0f0f0;
+        font-family: Arial, sans-serif;
+      }
+      .game-container {
+        text-align: center;
+      }
+      #game {
+        border: 3px solid #333;
+        border-radius: 8px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        background-color: white;
+      }
+      .success-message {
+        font-size: 1.5em;
+        color: #4caf50;
+        font-weight: bold;
+        margin: 20px 0;
+        padding: 10px 20px;
+        background-color: rgba(255, 255, 255, 0.8);
+        border-radius: 20px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
     </style>
     <script src="../../scripts/audio/audioConfig.js"></script>
     <script src="../../scripts/audio/AudioManager.js"></script>
     <script src="../../scripts/audio/audioInit.js"></script>
-</head>
+    <script src="../../scripts/timer/TimerBomb.js"></script>
+  </head>
 
-<body>
+  <body>
     <div class="game-container">
-        <h1>Jeu de Labyrinthe</h1>
-        <div class="success-message">Bien vu la review - Signé le cow-boy</div>
-        <canvas id="game" width="400" height="400"></canvas>
+      <h1>Jeu de Labyrinthe</h1>
+      <div class="success-message">Bien vu la review - Signé le cow-boy</div>
+      <canvas id="game" width="400" height="400"></canvas>
     </div>
 
     <script src="scripts/labyrinthe.js"></script>
-</body>
-
+  </body>
 </html>
