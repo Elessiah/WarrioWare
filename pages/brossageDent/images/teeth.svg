@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="240" height="120" viewBox="0 0 240 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Dents">
+    <!-- Fond arrondi (bouche blanche) -->
+    <rect x="2" y="8" width="236" height="104" rx="24" ry="24" fill="#ffffff" stroke="#d9534f" stroke-width="4"/>
+    <!-- Gencive subtile -->
+    <path d="M18 36 C40 20, 200 20, 222 36 L222 48 C200 40, 40 40, 18 48 Z" fill="#ffd7d0" opacity="0.95"/>
+    <!-- Rangée de dents (formes blanches séparées) -->
+    <!-- On dessine 6 dents en utilisant un rectangle avec léger arrondi en haut pour chaque dent -->
+    <g transform="translate(12,44)">
+        <!-- Tooth 1 -->
+        <path d="M0 0 q6 -12 24 0 v38 q0 6 -6 6 h-12 q-6 0 -6 -6 z" fill="#ffffff" stroke="#e6e6e6" stroke-width="1"/>
+        <!-- Tooth 2 -->
+        <g transform="translate(36,0)">
+            <path d="M0 0 q6 -12 24 0 v38 q0 6 -6 6 h-12 q-6 0 -6 -6 z" fill="#ffffff" stroke="#e6e6e6" stroke-width="1"/>
+        </g>
+        <!-- Tooth 3 -->
+        <g transform="translate(72,0)">
+            <path d="M0 0 q6 -12 24 0 v38 q0 6 -6 6 h-12 q-6 0 -6 -6 z" fill="#ffffff" stroke="#e6e6e6" stroke-width="1"/>
+        </g>
+        <!-- Tooth 4 -->
+        <g transform="translate(108,0)">
+            <path d="M0 0 q6 -12 24 0 v38 q0 6 -6 6 h-12 q-6 0 -6 -6 z" fill="#ffffff" stroke="#e6e6e6" stroke-width="1"/>
+        </g>
+        <!-- Tooth 5 -->
+        <g transform="translate(144,0)">
+            <path d="M0 0 q6 -12 24 0 v38 q0 6 -6 6 h-12 q-6 0 -6 -6 z" fill="#ffffff" stroke="#e6e6e6" stroke-width="1"/>
+        </g>
+        <!-- Tooth 6 -->
+        <g transform="translate(180,0)">
+            <path d="M0 0 q6 -12 24 0 v38 q0 6 -6 6 h-12 q-6 0 -6 -6 z" fill="#ffffff" stroke="#e6e6e6" stroke-width="1"/>
+        </g>
+    </g>
+
+    <!-- Petite brillance finale (optionnelle) -->
+    <g transform="translate(170,28)" opacity="0.9">
+        <polygon points="0,0 4,10 10,0 4,6" fill="#fff9a6" opacity="0.85"/>
+    </g>
+</svg>
