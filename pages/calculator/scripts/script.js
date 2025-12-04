@@ -85,12 +85,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     window.location.href = "/pages/pageGameOver/gameOver.html";
                 }
                 document.removeEventListener('keydown', handler); // éviter plusieurs triggers
-            }
-
-            setTimeout(() => {
-                generateOperation();
-            }, 1000);
-        } else {
+            } else {
             gameTimer.explode();
             isValidAnswer.innerText = "❌ Incorrect !";
             isValidAnswer.className = "error";
@@ -101,6 +96,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
                 window.location.href = '../PageGameOver/GameOver.html';
             }, 2000);
+        }
+
+            setTimeout(() => {
+                generateOperation();
+            }, 1000);
         }
     }
 
