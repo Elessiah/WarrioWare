@@ -45,8 +45,13 @@ function fin(gagne) {
   clearInterval(intervalCarrousel);
   clearInterval(intervalTimer);
 
-  msg.textContent = gagne ? "Gagné !" : "Perdu !";
-  msg.style.color = gagne ? "#0f0" : "#f00";
+  if ( gagne )
+  {
+      msg.textContent = "Gagné !";
+      msg.style.color = "#0f0";
+  }
+  else
+      window.location.href = "../pageGameOver/gameOver.html";
 }
 
 // Input

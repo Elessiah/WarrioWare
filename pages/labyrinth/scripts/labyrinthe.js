@@ -7,6 +7,14 @@ const a = document.getElementById("game");
 const k = "green";
 const b = a.getContext("2d");
 const l = "white";
+let inactivityTimer;
+
+function resetInactivityTimer() {
+    clearTimeout(inactivityTimer);
+    inactivityTimer = setTimeout(() => {
+        window.location.href = "../pageGameOver/gameOver.html"; // Redirection vers la page gameover
+    }, 5000); // 5 secondes d'inactivité
+}
 
 
 const f = [
@@ -70,3 +78,4 @@ document.addEventListener("keydown", (e) => {
 });
 
 func();
+resetInactivityTimer();
