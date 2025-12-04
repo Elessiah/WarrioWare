@@ -3,7 +3,7 @@ body {
         height: 100vh;
         width: 100vw;
         overflow: hidden;
-        background: #f1faee;
+        background-image: url(/images/background.jpg);
         font-family: Arial, sans-serif;
     }
 
