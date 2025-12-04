@@ -1,4 +1,4 @@
-const clicksNeeded = Math.floor(Math.random() * 40) + 40;
+const clicksNeeded = Math.floor(Math.random() * 10) + 20;
 let clicks = 0;
 
 let time = 5;
@@ -31,12 +31,10 @@ document.getElementById("click-area").addEventListener("click", () => {
 
 function win() {
     clearInterval(countdown);
-    alert("🎉 BRAVO ! Le ballon est gonflé !");
     window.location.href = "page_success.html";
 }
 
 function lose() {
     clearInterval(countdown);
-    alert("❌ Temps écoulé... Le ballon n'est pas assez gonflé.");
     window.location.href = "page_fail.html";
 }
