@@ -1,45 +1,66 @@
-body {
-        font-family: Arial;
+    body {
         margin: 0;
         overflow: hidden;
         height: 100vh;
         width: 100vw;
-        background: #f6f6f6;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #dfe9f3, #ffffff);
     }
 
     #timer {
-        font-size: 3rem;
         position: fixed;
         top: 20px;
         left: 50%;
         transform: translateX(-50%);
-        color: red;
+        font-size: 3rem;
+        font-weight: bold;
+        color: #d62828;
+        text-shadow: 2px 2px 4px #0002;
         z-index: 1000;
     }
 
-    /* Fils */
     .item {
         position: fixed;
-        left: 20px;
-        width: 150px;
-        padding: 10px;
-        border: 2px solid black;
-        border-radius: 8px;
-        background: white;
+        left: 40px;
+        width: 160px;
+        padding: 12px;
+        border-radius: 10px;
+        font-size: 1.3rem;
         cursor: grab;
-        font-size: 1.2rem;
+        color: white;
+        box-shadow: 0 4px 10px #0003;
+        transition: transform .2s;
     }
+    .item:active { transform: scale(1.07); }
 
-    /* Prises */
+    #rouge { background: #e63946; top: 100px; }
+    #jaune { background: #ffb703; top: 200px; }
+    #bleu  { background: #0077b6; top: 300px; }
+
     .target {
         position: fixed;
-        width: 150px;
-        height: 50px;
-        border: 2px dashed black;
-        border-radius: 8px;
+        width: 160px;
+        height: 55px;
+        border-radius: 10px;
         display: flex;
         justify-content: center;
         align-items: center;
-        background: #e9e9e9;
+        background: #f1f1f1;
         font-size: 1.2rem;
-    }²& aqsze"
+        font-weight: bold;
+        box-shadow: 0 4px 10px #0003;
+        transition: transform .2s;
+    }
+
+    .target:hover {
+        transform: scale(1.05);
+    }
+
+    svg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        width: 100vw;
+        height: 100vh;
+    }
