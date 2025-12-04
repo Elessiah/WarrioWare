@@ -8,12 +8,15 @@ const k = "green";
 const b = a.getContext("2d");
 const l = "white";
 let inactivityTimer;
+let gameEnded = false;
 
 function resetInactivityTimer() {
     clearTimeout(inactivityTimer);
     inactivityTimer = setTimeout(() => {
-        window.location.href = "../pageGameOver/gameOver.html"; // Redirection vers la page gameover
-    }, 5000); // 5 secondes d'inactivité
+        if (!gameEnded) {
+            endGame(false);
+        }
+    }, 5000); // 5 secondes pour atteindre la sortie
 }
 
 
@@ -41,11 +44,36 @@ for (let y = 0; y < d; y++) {
     }
 }
 
+function endGame(win = false) {
+    gameEnded = true;
+    clearTimeout(inactivityTimer);
+    
+    if (typeof audioManager !== 'undefined') {
+        if (win) {
+            audioManager.playWinSound();
+        } else {
+            audioManager.playLoseSound();
+        }
+    }
+    
+    setTimeout(() => {
+        window.location.href = "../pageGameOver/gameOver.html";
+    }, 500);
+}
+
 function func() {
+    // Vérifier si le joueur est sur la case de sortie
+    if (f[g.y][g.x] === 3 && !gameEnded) {
+        endGame(true);
+        return;
+    }
+    
     for (let y = 0; y < d; y++) {
         for (let x = 0; x < e; x++) {
             if (f[y][x] === 1) b.fillStyle = h;       
-            else if (f[y][x] === 3) b.fillStyle = k;  
+            else if (f[y][x] === 3) {
+                b.fillStyle = k;
+                console.log("Gagné")}
             else b.fillStyle = l;                       
 
             b.fillRect(x * c, y * c, c, c);
@@ -69,7 +97,6 @@ function fonc(dx, dy) {
     // Vérifier si le joueur a atteint la sortie (case 3)
     if (f[p][o] === 3 && !gameEnded) {
         gameEnded = true;
-        gameTimer.stop();
         if (typeof audioManager !== 'undefined') {
             audioManager.playWinSound();
         }
