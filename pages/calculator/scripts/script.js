@@ -12,30 +12,22 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Fonction pour générer une nouvelle opération
     function generateOperation() {
-        const n1 = Math.floor(Math.random() * 20);
-        const n2 = Math.floor(Math.random() * 20);
-        const opeIndex = Math.floor(Math.random() * 4); // 0-3 pour 4 opérations
-
-        // Calcul du résultat selon l'opération
+        const n1 = Math.floor(Math.random() * 10);
+        const n2 = Math.floor(Math.random() * 5);
+        const opeIndex = Math.floor(Math.random() * 5);
         let result;
-        switch(operation[opeIndex]) {
-            case "+":
-                result = n1 + n2;
-                break;
-            case "-":
-                result = n1 - n2;
-                break;
-            case "*":
-                result = n1 * n2;
-                break;
-            case "/":
-                result = n1;
-                break;
-            default:
-                result = n1 + n2;
+
+        // Calcul du résultat
+        if (operation[opeIndex] === "+"){
+            result = n1 + n2;
+        } else if (operation[opeIndex] === "-"){
+            result = n1 - n2;
+        } else if (operation[opeIndex] === "*"){
+            result = n1 * n2
+        } else {
+            result = n1 / n2
         }
 
-        currentResult = result;
 
         // Affichage du calcul
         calculText.innerText = `${n1} ${operation[opeIndex]} ${n2}`;
@@ -71,21 +63,27 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
         setTimeout(() => {
-            window.location.href = '../PageGameOver/GameOver.html';
-        }, 2000);
-    }
+            timerFill.style.transition = `width ${DURATION}ms linear`;
+            timerFill.style.width = "0%";
+        }, 50);
 
-    // Fonction pour vérifier la réponse
-    function checkAnswer() {
-        const userAnswer = Number(answerText.value);
+        // Quand le temps est écoulé
+        timer = setTimeout(() => {
+            window.location.href = "../pageGameOver/gameOver.html";
+        }, DURATION);
 
-        if (userAnswer === currentResult) {
-            gameTimer.stop();
-            isValidAnswer.innerText = "✅ Correct !";
-            isValidAnswer.className = "correct";
-
-            if (typeof audioManager !== 'undefined') {
-                audioManager.playWinSound();
+        // Détecter Enter
+        const handler = function(event) {
+            if (event.key === "Enter") {
+                clearTimeout(timer);
+                if (Number(answerText.value) === result) {
+                    isValidAnswer.innerText = "Correct";
+                    isValidAnswer.className = "correct";
+                    window.location.href = "../../../index.html"
+                } else {
+                    window.location.href = "../pageGameOver/gameOver.html";
+                }
+                document.removeEventListener('keydown', handler); // éviter plusieurs triggers
             }
 
             setTimeout(() => {
