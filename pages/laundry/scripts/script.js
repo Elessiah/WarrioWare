@@ -1,10 +1,10 @@
+
 const sockCount = Math.floor(Math.random() * 3) + 1;
 
 const screenW = window.innerWidth - 120;
 const screenH = window.innerHeight - 120;
 
 let remaining = sockCount;
-let gameTimer;
 
 for (let i = 0; i < sockCount; i++) {
     const sock = document.createElement("div");
@@ -70,11 +70,6 @@ function lose() {
 }
 
 function lose() {
-    if (typeof audioManager !== 'undefined') {
-        audioManager.playGameOverSound();
-    }
-
-    setTimeout(() => {
-        window.location.href = "page_fail.html";
-    }, 1000);
+    clearInterval(countdown);
+    window.location.href = "../pageGameOver/gameOver.html";
 }
