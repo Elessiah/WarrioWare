@@ -85,22 +85,23 @@ document.addEventListener('DOMContentLoaded', function () {
                     window.location.href = "/pages/pageGameOver/gameOver.html";
                 }
                 document.removeEventListener('keydown', handler); // éviter plusieurs triggers
+            } else {
+                gameTimer.explode();
+                isValidAnswer.innerText = "❌ Incorrect !";
+                isValidAnswer.className = "error";
+
+                setTimeout(() => {
+                    if (typeof audioManager !== 'undefined') {
+                        audioManager.playGameOverSound();
+                    }
+                    window.location.href = '../PageGameOver/GameOver.html';
+                }, 2000);
             }
 
             setTimeout(() => {
                 generateOperation();
             }, 1000);
-        } else {
-            gameTimer.explode();
-            isValidAnswer.innerText = "❌ Incorrect !";
-            isValidAnswer.className = "error";
 
-            setTimeout(() => {
-                if (typeof audioManager !== 'undefined') {
-                    audioManager.playGameOverSound();
-                }
-                window.location.href = '../PageGameOver/GameOver.html';
-            }, 2000);
         }
     }
 
