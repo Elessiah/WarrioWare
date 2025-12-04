@@ -5,18 +5,55 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Labyrinthe</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+        .game-container {
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        #game {
+            border: 3px solid #333;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            background-color: white;
+        }
+        .success-message {
+            font-size: 2em;
+            color: #4CAF50;
+            font-weight: bold;
+            margin-bottom: 20px;
+            opacity: 1; /* Toujours visible */
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+    </style>
     <script src="../../scripts/audio/audioConfig.js"></script>
     <script src="../../scripts/audio/AudioManager.js"></script>
     <script src="../../scripts/audio/audioInit.js"></script>
 </head>
 
 <body>
-    <h1>Jeu de Labyrinthe</h1>
-    <canvas id="game" width="400" height="400"></canvas>
+    <div class="game-container">
+        <h1>Jeu de Labyrinthe</h1>
+        <div id="successMessage" class="success-message">Bien vu la review - Signé le cow-boy</div>
+        <canvas id="game" width="400" height="400"></canvas>
+    </div>
 
     <script src="scripts/labyrinthe.js"></script>
 
-
 </body>
-
 </html>

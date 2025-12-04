@@ -61,13 +61,22 @@ function fonc(dx, dy) {
     const o = g.x + dx;
     const p = g.y + dy;
 
-    if (f[p][o] === 1 ) return;
+    if (f[p][o] === 1) return;
 
+    // Vérifier si le joueur atteint la sortie (valeur 3)
+    if (f[p][o] === 3) {
+        // Rediriger après un court délai
+        setTimeout(() => {
+            window.location.href = "../pageGameOver/gameOver.html";
+        }, 500);
+        return;
+    }
 
     g.x = o;
     g.y = p;
 
     func();
+    resetInactivityTimer(); // Réinitialiser le timer d'inactivité à chaque mouvement
 }
 
 document.addEventListener("keydown", (e) => {
