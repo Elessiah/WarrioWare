@@ -96,9 +96,11 @@ function endGame(success) {
     if (success) {
         resultElement.textContent = '✓ SUCCÈS !';
         resultElement.className = 'result success';
+        window.location.href = "/pages/Transition/Transition.html"
     } else {
         resultElement.textContent = '✗ ÉCHEC !';
         resultElement.className = 'result failure';
+        window.location.href = "/pages/pageGameOver/gameOver.html"
     }
 }
 

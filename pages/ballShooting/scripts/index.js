@@ -106,8 +106,7 @@ function shootBall() {
                 ball.y + ball.radius > goal.y &&
                 ball.y - ball.radius < goal.y + goal.height
             ) {
-                clearInterval(animation);
-                resetBall();
+                window.location.href = "/pages/Transition/Transition.html"
             }
 
             // Vérification si le ballon sort du canvas
@@ -117,7 +116,7 @@ function shootBall() {
                 ball.y < 0 ||
                 ball.y > canvas.height
             ) {
-                window.location.href = "../pageGameOver/gameOver.html";
+                window.location.href = "/pages/pageGameOver/gameOver.html";
             }
 
             update();

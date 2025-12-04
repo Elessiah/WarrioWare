@@ -53,10 +53,10 @@ bin.addEventListener("drop", e => {
 
 function win() {
     clearInterval(countdown);
-    window.location.href = "page_success.html";
+    window.location.href = "/pages/pageGameOver/gameOver.html"
 }
 
 function lose() {
     clearInterval(countdown);
-    window.location.href = "page_fail.html";
+    window.location.href = "/pages/Transition/Transition.html"
 }

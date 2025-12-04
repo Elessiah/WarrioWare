@@ -71,10 +71,11 @@ function gameLoop() {
     if (player.hasReachedEnd()) {
         gameState.isRunning = false;
         gameState.gameResult = 'success';
-
         window.dispatchEvent(new CustomEvent('gameEnded', {
             detail: { result: 'success', message: 'Bravo ! Vous avez traversé toutes les routes !' }
+            
         }));
+        window.location.href = "/pages/Transition/Transition.html"
         return;
     }
 
@@ -87,7 +88,7 @@ function gameLoop() {
         window.dispatchEvent(new CustomEvent('gameEnded', {
             detail: { result: 'fail', message: 'Collision avec une voiture !' }
         }));
-        window.location.href = "../pageGameOver/gameOver.html";
+        window.location.href = "/pages/pageGameOver/gameOver.html"
         return;
     }
 

@@ -70,7 +70,7 @@ document.querySelectorAll(".target").forEach(target => {
             target.style.background = "#ff7b7b";
             target.textContent = "❌ Faux";
             clearInterval(countdown);
-            window.location.href = "page_fail.html";
+            window.location.href = "/pages/pageGameOver/gameOver.html"
         }
     });
 });
@@ -80,6 +80,6 @@ function checkWin() {
         .every(t => t.textContent === "✔ Correct");
     if (ok) {
         clearInterval(countdown);
-        window.location.href = "page_success.html";
+        window.location.href = "/pages/Transition/Transition.html"
     }
 }

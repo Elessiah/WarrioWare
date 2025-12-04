@@ -49,9 +49,10 @@ function fin(gagne) {
   {
       msg.textContent = "Gagné !";
       msg.style.color = "#0f0";
+      window.location.href = "/pages/Transition/Transition.html"
   }
   else
-      window.location.href = "../pageGameOver/gameOver.html";
+      window.location.href = "/pages/pageGameOver/gameOver.html"
 }
 
 // Input

@@ -84,7 +84,7 @@ function endGame() {
     finalScoreElement.textContent = `Score final : ${score}`;
     document.querySelector('.game-over h2').textContent = 'Partie terminée !';
     gameOverElement.style.display = 'flex';
-    window.location.href = "../pageGameOver/gameOver.html";
+    window.location.href = "/pages/pageGameOver/gameOver.html"
 }
 
 function winGame() {
@@ -92,6 +92,7 @@ function winGame() {
     finalScoreElement.textContent = score;
     document.querySelector('.game-over h2').textContent = 'Félicitations ! Vous avez gagné !';
     gameOverElement.style.display = 'flex';
+    window.location.href = "/pages/Transition/Transition.html"
 }
 
 function startGame() {
