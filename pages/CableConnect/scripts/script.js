@@ -18,7 +18,7 @@ const countdown = setInterval(() => {
     timer.textContent = time;
     if (time <= 0) {
         clearInterval(countdown);
-        window.location.href = "page_fail.html";
+        window.location.href = "../pageGameOver/gameOver.html";
     }
 }, 1000);
 
