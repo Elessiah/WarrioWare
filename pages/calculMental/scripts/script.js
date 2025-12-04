@@ -47,6 +47,8 @@ document.addEventListener('DOMContentLoaded', function () {
         timer = setTimeout(() => {
             isValidAnswer.innerText = "Trop tard !";
             isValidAnswer.className = "error";
+            answerText.disabled = true;
+            //window.location.href = ""; //game over
         }, DURATION);
 
         // Détecter Enter
