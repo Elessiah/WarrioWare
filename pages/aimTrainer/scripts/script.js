@@ -6,7 +6,7 @@ let timer;
 let freezeTimeout;
 let inactivityTimer;
 
-function resetInactivityTimer() {
+function inactivity() {
     clearTimeout(inactivityTimer);
     inactivityTimer = setTimeout(() => {
         window.location.href = "../pageGameOver/gameOver.html"; // Redirection vers la page gameover
@@ -51,4 +51,4 @@ btn.addEventListener("click", () => {
 
 // Lancer le bouton pour la première fois
 placeButton();
-resetInactivityTimer();
+inactivity();
