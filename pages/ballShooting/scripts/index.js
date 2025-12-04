@@ -37,13 +37,13 @@ function drawBall() {
 
 // Fonction pour dessiner le but
 function drawGoal() {
-    // potos
+    // poteaux
     ctx.fillStyle = goal.color;
     ctx.fillRect(goal.x, goal.y, goal.width, goal.height);
     ctx.strokeStyle = "black";
     ctx.strokeRect(goal.x, goal.y, goal.width, goal.height);
 
-    // filet o fish
+    // filets
     ctx.strokeStyle = "rgba(0,0,0,0.7)";
     ctx.lineWidth = 1;
 
@@ -64,7 +64,6 @@ function drawGoal() {
     }
 }
 
-
 // dessiner la ligne de pouvoir
 function drawPowerLine() {
     if (ball.isDragging) {
@@ -84,8 +83,29 @@ function update() {
     drawPowerLine();
 }
 
+// Initialisation AudioManager et TimerBomb
+let audioManager;
+window.addEventListener('DOMContentLoaded', () => {
+    if (typeof AudioManager !== 'undefined') {
+        audioManager = new AudioManager();
+        audioManager.playPrincipalMusic();
+    }
+    // Timer de 10 secondes pour tirer
+    window.gameTimer = new TimerBomb(10000, onTimeUp);
+    window.gameTimer.start();
+});
+
+function onTimeUp() {
+    // Temps écoulé, fin de partie
+    if (audioManager) audioManager.playGameOverSound();
+    alert('Temps écoulé !');
+    // Optionnel : reset ou reload
+    window.location.reload();
+}
+
 function shootBall() {
     if (ball.isDragging) {
+        if (audioManager) audioManager.playButtonSound();
         const dx = ball.x - mouseX;
         const dy = ball.y - mouseY;
         const distance = Math.sqrt(dx * dx + dy * dy);
@@ -98,31 +118,30 @@ function shootBall() {
         const animation = setInterval(() => {
             ball.x += vx;
             ball.y += vy;
-
-            // Vérification si le ballon est dans le but
+            // Vérifier si le ballon est dans le but
             if (
                 ball.x + ball.radius > goal.x &&
                 ball.x - ball.radius < goal.x + goal.width &&
                 ball.y + ball.radius > goal.y &&
                 ball.y - ball.radius < goal.y + goal.height
             ) {
-                alert("Champion cousin !");
                 clearInterval(animation);
-                resetBall();
+                if (audioManager) audioManager.playWinSound();
+                alert('But !');
+                window.gameTimer.stop();
+                setTimeout(() => window.location.reload(), 1500);
             }
-
-            // Vérification si le ballon sort du canvas
+            // Hors du terrain
             if (
-                ball.x < 0 ||
-                ball.x > canvas.width ||
-                ball.y < 0 ||
-                ball.y > canvas.height
+                ball.x < 0 || ball.x > canvas.width ||
+                ball.y < 0 || ball.y > canvas.height
             ) {
-                alert("C'est une passe pour Thomas Pesquier ou quoi ?");
                 clearInterval(animation);
-                resetBall();
+                if (audioManager) audioManager.playLoseSound();
+                alert('Raté !');
+                window.gameTimer.stop();
+                setTimeout(() => window.location.reload(), 1500);
             }
-
             update();
         }, 16);
     }
