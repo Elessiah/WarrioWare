@@ -129,7 +129,7 @@ window.addEventListener('DOMContentLoaded', () => {
 function gameOver(success) {
     dropFalling = false;
     if ( !success ){
-        window.location.href = "../pageGameOver/gameOver.html";
+        window.location.href = "/pages/pageGameOver/gameOver.html"
     }
 
     if (success) {
@@ -146,4 +146,5 @@ function gameOver(success) {
     setTimeout(() => window.location.reload(), 2000);
 
     console.log(success ? "success" : "fail");
+    window.location.href = "/pages/Transition/Transition.html"
 }

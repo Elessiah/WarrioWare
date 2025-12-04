@@ -35,7 +35,7 @@ let inactivityTimer;
 function resetInactivityTimer() {
   clearTimeout(inactivityTimer);
   inactivityTimer = setTimeout(() => {
-    window.location.href = "../pageGameOver/gameOver.html"; // Redirection vers la page gameover
+    window.location.href = "/pages/Transition/Transition.html"; // Redirection vers la page gameover
   }, 5000); // 5 secondes d'inactivité
 }
 
