@@ -8,7 +8,6 @@ const couleurs = ["#e74c3c", "#3498db", "#f1c40f", "#2ecc71", "#9b59b6"];
 const carrousel = document.querySelector(".carrousel");
 const cible = document.querySelector(".cible");
 const msg = document.querySelector(".msg");
-const timerElt = document.querySelector(".timer");
 
 // Cible aléatoire
 const couleurCible = couleurs[Math.floor(Math.random() * couleurs.length)];
@@ -16,9 +15,27 @@ cible.style.background = couleurCible;
 
 // Variables de jeu
 let index = 0;
-let debut = performance.now();
 let fini = false;
-let intervalCarrousel, intervalTimer;
+let intervalCarrousel;
+let gameTimer;
+
+// Fonction appelée quand le temps est écoulé
+function onTimeUp() {
+    fin(false);
+}
+
+// Initialiser le timer 5 secondes
+gameTimer = new TimerBomb(dureeJeu, onTimeUp);
+gameTimer.start();
+
+// Initialisation AudioManager
+let audioManager;
+window.addEventListener('DOMContentLoaded', () => {
+    if (typeof AudioManager !== 'undefined') {
+        audioManager = new AudioManager();
+        audioManager.playPrincipalMusic();
+    }
+});
 
 // Fonctions
 function startCarrousel() {
@@ -28,15 +45,6 @@ function startCarrousel() {
   }, vitesseCarrousel);
 }
 
-function startTimer() {
-  intervalTimer = setInterval(() => {
-    const maintenant = performance.now();
-    const restant = Math.max(0, dureeJeu - (maintenant - debut));
-    timerElt.textContent = "Temps : " + (restant / 1000).toFixed(1) + "s";
-
-    if (restant <= 0) fin(false);
-  }, 50);
-}
 
 function fin(gagne) {
   if (fini) return;
@@ -53,6 +61,15 @@ function fin(gagne) {
   }
   else
       window.location.href = "/pages/pageGameOver/gameOver.html"
+  if (gagne) {
+    msg.textContent = "Gagné !";
+    msg.style.color = "#0f0";
+    if (audioManager) audioManager.playWinSound();
+  } else {
+    msg.textContent = "Perdu !";
+    msg.style.color = "#f00";
+    if (audioManager) audioManager.playLoseSound();
+  }
 }
 
 // Input
@@ -68,5 +85,3 @@ document.addEventListener("keydown", (e) => {
 // Lancement
 carrousel.style.background = couleurs[0];
 startCarrousel();
-startTimer();
-
