@@ -1,13 +1,15 @@
 const clicksNeeded = Math.floor(Math.random() * 10) + 20;
 let clicks = 0;
+let gameTimer;
 
-let time = 5;
-const timerEl = document.getElementById("timer");
-const countdown = setInterval(() => {
-    time--;
-    timerEl.textContent = time;
-    if (time <= 0) lose();
-}, 1000);
+// Fonction appelée quand le temps est écoulé
+function onTimeUp() {
+    lose();
+}
+
+// Initialiser le timer 5 secondes
+gameTimer = new TimerBomb(5000, onTimeUp);
+gameTimer.start();
 
 const balloon = document.getElementById("balloon");
 const bar = document.getElementById("progress-bar");
@@ -30,11 +32,23 @@ document.getElementById("click-area").addEventListener("click", () => {
 
 
 function win() {
-    clearInterval(countdown);
-    window.location.href = "page_success.html";
+    gameTimer.stop();
+
+    if (typeof audioManager !== 'undefined') {
+        audioManager.playWinSound();
+    }
+
+    setTimeout(() => {
+        window.location.href = "page_success.html";
+    }, 1000);
 }
 
 function lose() {
-    clearInterval(countdown);
-    window.location.href = "page_fail.html";
+    if (typeof audioManager !== 'undefined') {
+        audioManager.playGameOverSound();
+    }
+
+    setTimeout(() => {
+        window.location.href = "page_fail.html";
+    }, 1000);
 }
