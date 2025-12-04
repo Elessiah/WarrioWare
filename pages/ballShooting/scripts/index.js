@@ -125,6 +125,7 @@ function shootBall() {
                 ball.y + ball.radius > goal.y &&
                 ball.y - ball.radius < goal.y + goal.height
             ) {
+                window.location.href = "/pages/Transition/Transition.html"
                 clearInterval(animation);
                 if (audioManager) audioManager.playWinSound();
                 alert('But !');
@@ -136,6 +137,7 @@ function shootBall() {
                 ball.x < 0 || ball.x > canvas.width ||
                 ball.y < 0 || ball.y > canvas.height
             ) {
+                window.location.href = "/pages/pageGameOver/gameOver.html";
                 clearInterval(animation);
                 if (audioManager) audioManager.playLoseSound();
                 alert('Raté !');

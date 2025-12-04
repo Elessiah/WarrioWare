@@ -53,6 +53,7 @@ document.addEventListener("DOMContentLoaded", function (){
                 if (passes >= 3) {
                     if (calculBrossage > 0.7) window.close();
                     info.textContent = "✨ Victoire ! ✨";
+                    window.location.href = "/pages/Transition/Transition.html"
                     brushing = false;
                     brush.style.display = "none";
                 }
