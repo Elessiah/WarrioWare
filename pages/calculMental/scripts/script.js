@@ -12,8 +12,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Fonction pour générer une nouvelle opération
     function generateOperation() {
-        const n1 = Math.floor(Math.random() * 20);
-        const n2 = Math.floor(Math.random() * 20);
+        const n1 = Math.floor(Math.random() * 10);
+        const n2 = Math.floor(Math.random() * 5);
         const opeIndex = Math.floor(Math.random() * 5);
 
         // Calcul du résultat
